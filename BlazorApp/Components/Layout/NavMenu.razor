@@ -1,0 +1,36 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorApp</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-eyeglasses mb-4" aria-hidden="true"></span> Kezdőlap
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-calculator mb-4" aria-hidden="true"></span> Számláló
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi-brightness-high-fill mb-4 " aria-hidden="true"></span> Időjárás
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="urlap">
+                <span class="me-2" aria-hidden="true"><Icon Name="IconName.CardList" Size="IconSize.x2" Color="IconColor.Info" /></span> Űrlap
+            </NavLink>
+        </div>
+    </nav>
+</div>
+

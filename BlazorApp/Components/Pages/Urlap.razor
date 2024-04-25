@@ -1,0 +1,65 @@
+﻿@page "/urlap"
+@using BlazorApp.Components.Model
+@rendermode InteractiveServer
+
+<h3>Űrlap</h3>
+<hr/>
+<div class="col-md-4 mb-3">
+    <label for="vname" >Vezetéknév: </label><br />
+    <input type="text" id="vname" name="vname" class="form-control" @bind="newCustomer.Fname" />
+</div>
+<div class="col-md-4 mb-3">
+    <label for="vlame">Keresztnév: </label><br />
+    <input type="text" id="lname" name="lname" class="form-control" @bind="newCustomer.Lname" />
+</div>
+
+@* megjelenítés *@
+@* <p>@newCustomer.Fname</p> *@
+
+<div class="mt-2 mb-2">
+    <button @onclick="AddlistC" class="btn btn-primary ">Hozzáadás</button>
+</div>
+
+<div class="col-md-10 mt-5">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th>Vezetéknév</th>
+            <th>Keresztnév</th>
+            <th>E-mail:</th>
+            <th>Tel:</th>
+            <th>Szül.idő</th>
+            <th>Ár</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            
+                @foreach(var item in Clist)
+                {
+                <tr>
+                    <td>@item.Fname</td>
+                    <td>@item.Lname</td>
+                </tr>
+                }
+          
+            
+
+        </tbody>
+    </table>
+</div>
+
+
+@code {
+    public Customer newCustomer = new();
+
+    private List<Customer> Clist = new();
+
+
+
+    private void AddlistC()
+    {
+        Clist.Add(newCustomer);
+        newCustomer = new Customer();
+    }
+}
