@@ -1,0 +1,93 @@
+﻿@page "/urlap2"
+@using BlazorApp.Components.Model
+@rendermode InteractiveServer
+
+
+<h3>Űrlap2</h3>
+<EditForm method="post" Model="newcustomer" FormName="CreateCustomer" OnValidSubmit="AddCustomer" Enhance>
+    <DataAnnotationsValidator/>
+
+    <div class="md-3">
+        <label for="Vname">Vezetéknév:</label>
+        <InputText id="Vname" @bind-Value="newcustomer.Fname" class="form-control"/>
+        <ValidationMessage For="()=>newcustomer.Fname" class="text-danger"/>
+    </div>
+
+    <div class="md-3">
+        <label for="Lname">Keresztnév:</label>
+        <InputText id="Lname" @bind-Value="newcustomer.Lname" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.Lname" class="text-danger" />
+    </div>
+    <div class="md-3">
+        <label for="email">E-mail:</label>
+        <InputText id="email" @bind-Value="newcustomer.Email" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.Email" class="text-danger" />
+    </div>
+    <div class="md-3">
+        <label for="PhoneNumber">Tel:</label>
+        <InputText id="PhoneNumber" @bind-Value="newcustomer.PhoneNumber" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.PhoneNumber" class="text-danger" />
+    </div>
+
+    <div class="md-3">
+        <label for="BirthDate">Szül.idő:</label>
+        <InputDate id="BirthDate" @bind-Value="newcustomer.BirthDay" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.BirthDay" class="text-danger" />
+    </div>
+
+    <div class="md-3">
+        <label for="price">Ár:</label>
+        <InputNumber id="price" @bind-Value="newcustomer.Price" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.Price" class="text-danger" />
+    </div>
+
+    <div>
+        <button Type="submit" class="btn btn-primary mb-3 mt-3">Hozzáad</button>
+    </div>
+</EditForm>
+
+<div class="col-md-10 mt-5">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Név:</th>
+                <th>E-mail:</th>
+                <th>Tel:</th>
+                <th>Szül.idő</th>
+                <th>Ár</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Clist)
+            {
+                <tr>
+                    <td>@item.GetFullName()</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.BirthDay.ToShortDateString()</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+@code {
+    public Customer newcustomer = new();
+
+    private List<Customer> Clist = new();
+
+    public void AddCustomer()
+    {
+        Clist.Add(newcustomer);
+        newcustomer = new Customer();
+    }
+}

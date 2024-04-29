@@ -12,7 +12,22 @@
     <label for="vlame">Keresztnév: </label><br />
     <input type="text" id="lname" name="lname" class="form-control" @bind="newCustomer.Lname" />
 </div>
-
+<div class="col-md-4 mb-3">
+    <label for="email">Email: </label><br />
+    <input type="text" id="email" name="email" class="form-control" @bind="newCustomer.Email" />
+</div>
+<div class="col-md-4 mb-3">
+    <label for="phoneNumber">Phone: </label><br />
+    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" @bind="newCustomer.PhoneNumber" />
+</div>
+<div class="col-md-4 mb-3">
+    <label for="birthd">Szül.idő: </label><br />
+    <input type="date" id="birthd" name="birthd" class="form-control" @bind="newCustomer.BirthDay" />
+</div>
+<div class="col-md-4 mb-3">
+    <label for="price">Ár: </label><br />
+    <input type="number" id="price" name="price" class="form-control" @bind="newCustomer.Price" />
+</div>
 @* megjelenítés *@
 @* <p>@newCustomer.Fname</p> *@
 
@@ -40,6 +55,10 @@
                 <tr>
                     <td>@item.Fname</td>
                     <td>@item.Lname</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.BirthDay.ToShortDateString()</td>
+                    <td>@item.Price</td>
                 </tr>
                 }
           
@@ -61,5 +80,10 @@
     {
         Clist.Add(newCustomer);
         newCustomer = new Customer();
+    }
+
+    public void validates()
+    {
+        // ide jönne a validáció
     }
 }
