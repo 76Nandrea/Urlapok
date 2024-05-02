@@ -1,6 +1,7 @@
 ﻿@page "/urlap2"
 @using BlazorApp.Components.Model
 @rendermode InteractiveServer
+@using NetcodeHub.Packages.Components.Validations.OnInput
 
 
 <h3>Űrlap2</h3>
@@ -18,6 +19,19 @@
         <InputText id="Lname" @bind-Value="newcustomer.Lname" class="form-control" />
         <ValidationMessage For="()=>newcustomer.Lname" class="text-danger" />
     </div>
+
+    <div class="md-4 mb-3">
+        <FloatingText id="pw" Label="Jelszó"  typeof="password" @bind-Value="newcustomer.Password" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.Password" class="text-danger" />
+    </div>
+
+ @*    <div class="md-3">
+        <label for="pw">Jelszó:</label>
+        <InputText id="pw" typeof="password" @bind-Value="newcustomer.Password" class="form-control" />
+        <ValidationMessage For="()=>newcustomer.Password" class="text-danger" />
+    </div> *@
+
+
     <div class="md-3">
         <label for="email">E-mail:</label>
         <InputText id="email" @bind-Value="newcustomer.Email" class="form-control" />
@@ -42,7 +56,7 @@
     </div>
 
     <div>
-        <button Type="submit" class="btn btn-primary mb-3 mt-3">Hozzáad</button>
+        <button type="submit" class="btn btn-primary mb-3 mt-3">Hozzáad</button>
     </div>
 </EditForm>
 
@@ -51,6 +65,7 @@
         <thead>
             <tr>
                 <th>Név:</th>
+                <th>Jelszó:</th>
                 <th>E-mail:</th>
                 <th>Tel:</th>
                 <th>Szül.idő</th>
@@ -64,10 +79,12 @@
             {
                 <tr>
                     <td>@item.GetFullName()</td>
+                    <td>@item.Password</td>
                     <td>@item.Email</td>
                     <td>@item.PhoneNumber</td>
                     <td>@item.BirthDay.ToShortDateString()</td>
                     <td>@item.Price</td>
+                    <td>@item.Age()</td>
                 </tr>
             }
 

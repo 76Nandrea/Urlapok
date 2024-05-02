@@ -13,8 +13,15 @@ namespace BlazorApp.Components.Model
         public string? Lname { get; set; }
 
         [Required]
-        [RegularExpression(@"^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W]{2,})$", ErrorMessage = "Rossz e-mail.")]
+        [RegularExpression(@"^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W]{1,})$", ErrorMessage = "Rossz e-mail.")]
         public string? Email { get; set; }
+
+        [Required(ErrorMessage = "A mező kitöltése kötelező!")]
+        [MinLength(8,ErrorMessage ="A jelszónak minimum 8 karaktert kell tatalmaznia!")]
+        [MaxLength(20, ErrorMessage ="A jelszó nem lehet több 15 karakternél!")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,20}$", ErrorMessage = "a jelszónak kisbetűt, nagybetűt kell tartalmaznia.")]
+        public string? Password { get; set; }
+
 
         [Required]
         public string? PhoneNumber { get; set; }
@@ -32,12 +39,19 @@ namespace BlazorApp.Components.Model
 
         public string GetFullName()
         {
-            if (string.IsNullOrWhiteSpace(Fname) && !string.IsNullOrWhiteSpace(Lname))
-            {
-                return $"{Fname} {Lname}";
-            }
+            return $"{Fname} {Lname}";
+        }
 
-            return "Név nélkül";
+         public int Age()
+        {
+            int age = DateTime.Now.Year-BirthDay.Year;
+            if (DateTime.Now.Month < BirthDay.Month || DateTime.Now.Month == BirthDay.Month && DateTime.Now.Day < BirthDay.Day)
+            { 
+                    age--;
+             
+            }
+                
+            return age;
         }
     }
 }
